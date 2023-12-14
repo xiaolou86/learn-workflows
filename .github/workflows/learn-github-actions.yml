@@ -15,4 +15,8 @@ jobs:
             echo "hello log 1"
             echo "hello log 2"
             ls -al
-
+  typos:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: crate-ci/typos@master
