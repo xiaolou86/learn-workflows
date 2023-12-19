@@ -1,0 +1,8 @@
+[files]
+# exclude the directory po
+extend-exclude = ["po/"]
+
+[default.extend-words]
+# Don't correct the word
+Foo = "Foo"
+
