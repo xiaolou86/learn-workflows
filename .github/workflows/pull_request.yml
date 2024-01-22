@@ -8,18 +8,18 @@ on:
 #  push:
 #    branches:
 #      - main
-
 jobs:
-
-
-  test-deploy:
-    name: Test deploy
+  # Build job
+  build:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout repository
-        uses: actions/checkout@v2
+      - name: Checkout
+        uses: actions/checkout@v4
         with:
           node-version: 16
+      - name: Setup Pages
+        id: pages
+        uses: actions/configure-pages@v3
 
       - name: Install Node.js
         uses: actions/setup-node@v2
@@ -30,63 +30,22 @@ jobs:
 
       - name: Generate Site
         run: yarn generate
-            
-      - name: list files
-        run: |
-          ls -al
-          tree -L 2
 
-      - name: "Upload generated content"
-        uses: actions/upload-artifact@v2
-        with:
-          name: starknet-site
-          if-no-files-found: error
-          path:
-            public_html
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v2
 
-  publish:
-    name: deploy-review
+  # Deployment job
+  deploy:
+    environment:
+      name: github-pages
+      url: ${{steps.deployment.outputs.page_url}}
     runs-on: ubuntu-latest
-    needs:
-      - test-deploy
+    needs: build
     steps:
-      - name: Checkout repository
-        uses: actions/checkout@v2
-        with:
-          node-version: 16
-          ref: gh-pages
-          USER_TOKEN: ${{ secrets.USER_TOKEN }}
-
-      - name: Extract PR details
-        id: pr
+      - name: list
         run: |
-          PR_ID=pr-${{ github.event.pull_request.number }}
-          PREVIEW_PATH=previews/${PR_ID}
-          echo "::set-output name=PR_ID::${PR_ID}"
-
-      - name: "Remove preview build directory"
-        run: rm -rf ${{ steps.pr.outputs.PR_ID }}
-      - name: "Create preview build directory"
-        run: mkdir -p ${{ steps.pr.outputs.PR_ID }}
-      - name: "Download generated content"
-        uses: actions/download-artifact@v2
-        with:
-          name: starknet-site
-          path: ${{ steps.pr.outputs.PR_ID }}
-
-      - name: PR preview details
-        run:
-          echo "you can preview the PR at https://starknet-io.github.io/starknet-docs/${{ steps.pr.outputs.PR_ID }}/documentation/"
-
-      - name: "Commit changes"
-        run: |
-          set -euo pipefail
-
-          # Debug information
-          echo "Current directory: $(pwd)"
-          echo "Contents of the repository:"
-          ls -al
-          tree -L 2
-          
-        env:
-            GITHUB_TOKEN: "${{ secrets.GITHUB_TOKEN }}"
+		  ls -al
+		  tree -L 2
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v2
