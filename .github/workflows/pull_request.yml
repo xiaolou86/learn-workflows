@@ -44,8 +44,8 @@ jobs:
     steps:
       - name: list
         run: |
-		  ls -al
-		  tree -L 2
+          ls -al
+          tree -L 2
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v2
