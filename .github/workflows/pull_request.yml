@@ -83,8 +83,7 @@ jobs:
           ls -al
           
         env:
-            #GITHUB_TOKEN: "${{ secrets.GITHUB_TOKEN }}"
-            GITHUB_TOKEN: "aa"
+            GITHUB_TOKEN: "${{ secrets.GITHUB_TOKEN }}"
 
       - name: "Send comment to PR"
         continue-on-error: true
