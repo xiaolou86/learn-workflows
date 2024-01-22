@@ -1,11 +1,25 @@
 {
-  "name": "learn-workflows",
-  "version": "1.0.0",
-  "main": "index.js",
-  "repository": "git@github.com:xiaolou86/learn-workflows.git",
-  "author": "xiaolou86 <20718693+xiaolou86@users.noreply.github.com>",
+  "name": "starknet-docs",
+  "version": "0.1.456",
+  "private": true,
   "scripts": {
-    "generate": "node index.js"
+    "pre-release": "standard-version --prerelease --skip.changelog --releaseCommitMessageFormat 'chore(prerelease): {{currentTag}}'",
+    "release": "standard-version",
+    "release:dry": "standard-version --dry-run",
+    "generate": "antora playbook.yml"
   },
-  "license": "MIT"
+  "devDependencies": {
+    "@antora/cli": "3.1.1",
+    "@antora/site-generator": "3.1.1"
+  },
+  "dependencies": {
+    "@antora/lunr-extension": "^1.0.0-alpha.8",
+    "@asciidoctor/tabs": "^1.0.0-beta.3",
+    "algoliasearch": "^4.14.2",
+    "asciidoctor": "^2.2.6",
+    "html-to-text": "^8.2.1",
+    "lunr": "^2.3.9",
+    "simple-git": "^3.15.0",
+    "standard-version": "^9.3.2"
+  }
 }

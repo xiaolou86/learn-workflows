@@ -1,0 +1,3 @@
+About Starknet
+
+* xref:index.adoc[]
