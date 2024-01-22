@@ -30,6 +30,11 @@ jobs:
 
       - name: Generate Site
         run: yarn generate
+            
+      - name: list files
+        run: |
+          ls -al
+          tree -L 2
 
       - name: "Upload generated content"
         uses: actions/upload-artifact@v2
@@ -50,7 +55,7 @@ jobs:
         with:
           node-version: 16
           ref: gh-pages
-          #USER_TOKEN: ${{ secrets.USER_TOKEN }}
+          USER_TOKEN: ${{ secrets.USER_TOKEN }}
 
       - name: Extract PR details
         id: pr
