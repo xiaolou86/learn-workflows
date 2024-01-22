@@ -4,5 +4,8 @@
   "main": "index.js",
   "repository": "git@github.com:xiaolou86/learn-workflows.git",
   "author": "xiaolou86 <20718693+xiaolou86@users.noreply.github.com>",
+  "scripts": {
+    "generate": "node index.js"
+  },
   "license": "MIT"
 }
