@@ -46,6 +46,8 @@ jobs:
         run: |
           ls -al
           tree -L 2
+          echo "${{steps.deployment.outputs.page_url}}"
+          echo ${{steps.deployment.outputs.page_url}}
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v2
