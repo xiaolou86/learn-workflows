@@ -1,7 +1,0 @@
-[default]
-check-file = false
-
-[type.adoc]
-extend-glob = ["*.adoc"]
-check-file = true
-
