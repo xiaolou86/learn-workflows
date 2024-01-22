@@ -1,0 +1,8 @@
+{
+  "name": "learn-workflows",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "git@github.com:xiaolou86/learn-workflows.git",
+  "author": "xiaolou86 <20718693+xiaolou86@users.noreply.github.com>",
+  "license": "MIT"
+}
