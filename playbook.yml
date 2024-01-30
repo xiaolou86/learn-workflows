@@ -53,5 +53,5 @@ antora:
 output:
   destinations:
     - provider: fs
-      path: ./_site/
+      path: ./public_html/
       clean: true
