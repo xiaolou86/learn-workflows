@@ -10,6 +10,8 @@ on:
 #      - main
 
 jobs:
+  permissions:
+        contents: write
 
   test-deploy:
     name: Test deploy
