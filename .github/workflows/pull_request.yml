@@ -11,7 +11,7 @@ on:
 
 jobs:
   permissions:
-        contents: write
+    contents: write
 
   test-deploy:
     name: Test deploy
