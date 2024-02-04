@@ -25,6 +25,16 @@ jobs:
         run: |
           echo "github.ref:"
           echo ${{ github.ref }} 
+
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      - name: Checkout status
+        run: |
+          git remote -v
+          git branch -a
+          git branch
+
   test_event_pull_request_target:
     name: Test event pull_request_target
     if: ${{ github.event.pull_request_target }}
@@ -35,3 +45,11 @@ jobs:
           echo "target github.ref:"
           echo ${{ github.ref }} 
 
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      - name: Checkout status
+        run: |
+          git remote -v
+          git branch -a
+          git branch
