@@ -1,4 +1,4 @@
-= Declaring a smart contract
+= Declaring a smart contract v2
 
 
 == Prerequisites
