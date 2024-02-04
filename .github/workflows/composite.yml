@@ -25,9 +25,20 @@ jobs:
         run: |
           echo "github.ref:"
           echo ${{ github.ref }} 
+      - name: Extract PR details
+        id: pr
+        run: |
+          PR_ID=pr-${{ github.event.pull_request.number }}
+          PR_REF=refs/pull/${{ github.event.pull_request.number }}/merge
+          echo "::set-output name=PR_ID::${PR_ID}"
+          echo "::set-output name=PR_REF::${PR_REF}"
+
 
       - name: Checkout repository
         uses: actions/checkout@v2
+        with:
+          #ref: ${{ steps.pr.outputs.PR_REF }}
+          ref: refs/pull/${{ github.event.pull_request.number }}/merge
 
       - name: Checkout status
         run: |
