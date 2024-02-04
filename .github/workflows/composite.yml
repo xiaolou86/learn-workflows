@@ -16,7 +16,7 @@ permissions:
 
 jobs:
 
-  test event pull_request:
+  test_event_pull_request:
     name: Test event pull_request
     if: ${{ github.event.pull_request }}
     runs-on: ubuntu-latest
@@ -25,7 +25,7 @@ jobs:
         run: |
           echo "github.ref:"
           echo ${{ github.ref }} 
-  test event pull_request_target:
+  test_event_pull_request_target:
     name: Test event pull_request_target
     if: ${{ github.event.pull_request.target }}
     runs-on: ubuntu-latest
