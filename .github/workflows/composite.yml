@@ -27,11 +27,11 @@ jobs:
           echo ${{ github.ref }} 
   test_event_pull_request_target:
     name: Test event pull_request_target
-    if: ${{ github.event.pull_request.target }}
+    if: ${{ github.event.pull_request_target }}
     runs-on: ubuntu-latest
     steps:
       - name: target step 1
         run: |
-          echo "github.ref:"
+          echo "target github.ref:"
           echo ${{ github.ref }} 
 
