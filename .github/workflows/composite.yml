@@ -1,0 +1,37 @@
+name: Pull request workflow
+
+on:
+  pull_request_target:
+    branches:
+      - '*'
+  pull_request:
+    branches:
+      - '*'
+
+#  push:
+#    branches:
+#      - main
+permissions:
+  contents: write
+
+jobs:
+
+  test event pull_request:
+    name: Test event pull_request
+    if: ${{ github.event.pull_request }}
+    runs-on: ubuntu-latest
+    steps:
+      - name: step 1
+        run: |
+          echo "github.ref:"
+          echo ${{ github.ref }} 
+  test event pull_request_target:
+    name: Test event pull_request_target
+    if: ${{ github.event.pull_request.target }}
+    runs-on: ubuntu-latest
+    steps:
+      - name: target step 1
+        run: |
+          echo "github.ref:"
+          echo ${{ github.ref }} 
+
