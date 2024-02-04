@@ -1,0 +1,2 @@
+
+components/Starknet/modules/tools/pages/starkgate_function_reference.adoc:For the minimum deployment fee, see link:https://github.com/starknet-io/starkgate-contracts/tree/v2.0/src/solidity/StarkgateConstants.sol#L22[`MIN_DEPLOYMENT_FEE`] in `StarkgateConstants.sol`.

@@ -1,0 +1,37 @@
+[id="starknet_account_structure"]
+= Starknet account interface
+
+A Starknet account contract must include the following two functions:
+
+* `+__validate__+`
+* `+__execute__+`
+
+These functions serve distinct purposes to ensure that only the account owner can initiate transactions and that fees can be charged for the resources they use.
+
+Starknet's account type is inspired by Ethereum's EIP-4337, where instead of an account being an EOA, it is now a smart contract account with arbitrary verification logic.
+
+Through the use of smart contracts, you are provided with complete flexibility within your account implementation.
+
+While not mandatory at the protocol level, a richer standard interface for accounts was developed by the community. This standard was developed by OpenZeppelin, in a close collaboration with wallet teams and other Core Starknet developers. You can see the traits as defined in https://github.com/ericnordelo/SNIPs/blob/feat/standard-account/SNIPS/snip-6.md[Starknet Improvement Proposal #6 (SNIP-6)].
+
+[id="replay_protection"]
+== Replay protection
+
+In Starknet, similar to Ethereum, every contract has a nonce, which is sequential. When a transaction is sent from an account, the transaction's nonce must match the account's nonce. The account's nonce is incremented after the transaction is executed, whether or not the transaction is reverted.
+
+[NOTE]
+====
+In Starknet, only the nonce of account contracts, that is, those adhering to the above structure, can be non-zero. 
+
+In contrast, in Ethereum, regular smart contracts, known as _Contract Accounts_, as opposed to _Externally Owned Accounts_ can increment their nonce by deploying smart contracts, that is, executing the `CREATE` and `CREATE2` opcodes. 
+
+For more information on accounts in Ethereum, see link:https://ethereum.org/en/developers/docs/accounts/[Ethereum Accounts] in the Ethereum documentation.
+====
+
+A nonce serves two important roles:
+
+* It guarantees transaction hash uniqueness, which is important for a good user experience.
+* It provides replay protection to the account. Because the signature refers to a particular nonce, a malicious party cannot replay the transaction.
+
+While Starknet currently determines the sequential nonce structure at the protocol level, in the future, Starknet will consider a more flexible design, extending account abstraction to nonce management, also referred to as _nonce abstraction_.
+
